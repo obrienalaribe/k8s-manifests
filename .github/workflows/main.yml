@@ -36,5 +36,5 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
-        run: echo "Received app version ${{ github.event.inputs.version }} basename ${{ github.events.inputs.ci-branch }}"
+        run: echo "App version ${{ github.event.inputs.version }}, Branch $(basename ${{ github.events.inputs.ci-branch }})"
 
