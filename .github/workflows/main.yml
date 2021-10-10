@@ -17,7 +17,7 @@ on:
         description: 'Version of the app to deploy'
         required: true
         default: ''
-      ci-branch:
+      branch:
         description: 'CI branch that triggered workflow'
         required: false
         default: ''
@@ -41,5 +41,5 @@ jobs:
       
       # Runs a single command using the runners shell
       - name: Run a one-line script
-        run: echo "App version ${{ github.event.inputs.version }}, Branch $(basename ${{ github.events.inputs.ci-branch }})"
+        run: echo "App version ${{ github.event.inputs.version }}, Branch $(basename ${{ github.events.inputs.branch }})"
 
