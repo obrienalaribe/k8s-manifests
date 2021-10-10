@@ -18,7 +18,7 @@ on:
         required: true
         default: ''
       branch:
-        description: 'CI branch that triggered workflow'
+        description: 'Branch to checkout to'
         required: false
         default: ''
 
@@ -31,15 +31,21 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-      
-      - name: Dump Github Context
-        env:
-          GH_CONTEXT: ${{ toJSON(github) }}
-        run: echo $GH_CONTEXT
+        with:
+          ref: ${{ github.event.inputs.branch }}
       
       # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo "App version ${{ github.event.inputs.version }}, Branch $(basename ${{ github.event.inputs.branch }})"
+      - name: Output CI Inputs
+        run: echo "App version ${{ github.event.inputs.version }}, Branch ${{ github.event.inputs.branch }}"
+        
+      - name: Set version
+        run: echo ${{ github.event.inputs.version }} > version
+        
+      - name: Push changes
+        uses: actions-go/push@v1
+        with:
+          ref: ${{ github.event.inputs.branch }}
+          commit-message: "CI triggered new version"
+          remote-ref: ${{ github.event.inputs.branch }}
 
