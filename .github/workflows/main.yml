@@ -19,7 +19,7 @@ on:
         default: ''
       branch:
         description: 'CI branch that triggered workflow'
-        required: false
+        required: true
         default: ''
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
