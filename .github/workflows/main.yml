@@ -33,7 +33,12 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-
+      
+      - name: Dump Github Context
+        env:
+          GH_CONTEXT: ${{ toJSON(github) }}
+        run: echo $GH_CONTEXT
+      
       # Runs a single command using the runners shell
       - name: Run a one-line script
         run: echo "App version ${{ github.event.inputs.version }}, Branch $(basename ${{ github.events.inputs.ci-branch }})"
