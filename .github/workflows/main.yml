@@ -35,7 +35,7 @@ jobs:
       - name: Set version
         run: |
           git checkout -b ${{ github.event.inputs.branch }}
-          git pull origin ${{ github.event.inputs.branch }}
+          git pull origin ${{ github.event.inputs.branch }} --ff-only
           echo ${{ github.event.inputs.version }} > version
           git config user.email "git@example.com"
           git config user.name "Github Actions"
