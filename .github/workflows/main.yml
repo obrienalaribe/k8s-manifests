@@ -35,7 +35,9 @@ jobs:
       - name: Set version
         run: |
           git checkout -b ${{ github.event.inputs.branch }}
-          git pull --rebase origin ${{ github.event.inputs.branch }}
+          git fetch
+          git reset --hard HEAD
+          git merge origin/${{ github.event.inputs.branch }}
           echo ${{ github.event.inputs.version }} > version
           git config user.email "git@example.com"
           git config user.name "Github Actions"
