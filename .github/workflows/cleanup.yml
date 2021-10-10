@@ -15,4 +15,4 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - run: |
-         git push origin --delete ${{ github.head_ref }}
+         git push origin --delete ${{ github.event.inputs.branch }}
