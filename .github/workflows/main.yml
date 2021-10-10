@@ -37,7 +37,7 @@ jobs:
           git checkout -b ${{ github.event.inputs.branch }}
           git fetch
           git reset --hard HEAD
-          git merge origin/${{ github.event.inputs.branch }}
+          git merge origin/${{ github.event.inputs.branch }} --no-edit
           echo ${{ github.event.inputs.version }} > version
           git config user.email "git@example.com"
           git config user.name "Github Actions"
