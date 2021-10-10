@@ -34,7 +34,7 @@ jobs:
         
       - name: Set version
         run: |
-          git checkout -b ${{ github.event.inputs.version }}
+          git checkout -b ${{ github.event.inputs.branch }}
           echo ${{ github.event.inputs.version }} > version
           git config user.email "git@example.com"
           git config user.name "Github Actions"
