@@ -42,11 +42,13 @@ jobs:
           git checkout -b ${{ github.event.inputs.version }}
           echo ${{ github.event.inputs.version }} > version
           git add version
+          git commit -m"CI triggered new version"
+          git push -u origin ${{ github.event.inputs.branch }}
         
-      - name: Push changes
-        uses: actions-go/push@v1
-        with:
-          ref: ${{ github.event.inputs.branch }}
-          commit-message: "CI triggered new version"
-          remote-ref: ${{ github.event.inputs.branch }}
+#       - name: Push changes
+#         uses: actions-go/push@v1
+#         with:
+#           ref: ${{ github.event.inputs.branch }}
+#           commit-message: "CI triggered new version"
+#           remote-ref: ${{ github.event.inputs.branch }}
 
