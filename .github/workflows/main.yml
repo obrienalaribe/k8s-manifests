@@ -34,21 +34,13 @@ jobs:
         
       - name: Set version
         run: |
+          git pull --allow-unrelated-histories
           git checkout -b ${{ github.event.inputs.branch }}
-          git fetch
-          git reset --hard HEAD
-          git merge origin/${{ github.event.inputs.branch }} --no-edit
           echo ${{ github.event.inputs.version }} > version
           git config user.email "git@example.com"
           git config user.name "Github Actions"
           git add version
           git commit -m"CI triggered new version"
           git push -u origin ${{ github.event.inputs.branch }}
-        
-#       - name: Push changes
-#         uses: actions-go/push@v1
-#         with:
-#           ref: ${{ github.event.inputs.branch }}
-#           commit-message: "CI triggered new version"
-#           remote-ref: ${{ github.event.inputs.branch }}
+      
 
