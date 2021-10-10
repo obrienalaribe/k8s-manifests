@@ -38,7 +38,10 @@ jobs:
         run: echo "App version ${{ github.event.inputs.version }}, Branch ${{ github.event.inputs.branch }}"
         
       - name: Set version
-        run: echo ${{ github.event.inputs.version }} > version
+        run: |
+          git checkout -b ${{ github.event.inputs.version }}
+          echo ${{ github.event.inputs.version }} > version
+          git add version
         
       - name: Push changes
         uses: actions-go/push@v1
